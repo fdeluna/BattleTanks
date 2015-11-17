@@ -35,6 +35,9 @@
 *.vcxproj.user
 *.opensdf
 
+#OGRE
+*.cfg
+
 #Directories
 dependencies/
 Debug/
