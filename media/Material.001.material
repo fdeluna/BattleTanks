@@ -1,16 +1,16 @@
-// Material genrated by blender2ogre 0.6.0
+// Material.001 genrated by blender2ogre 0.6.0
 
-material Material 
+material Material.001 
 {
     receive_shadows on 
 
     technique
     {
-        pass Material
+        pass Material.001
         {
             ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
             diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
-            specular 0.5 0.5 0.5 1.0 12.5
+            specular 0.0 0.0 0.0 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
             alpha_to_coverage off
@@ -33,14 +33,6 @@ material Material
             texture_unit 
             {
                 texture Seamless_Natural_Wood_Texture.jpg
-                tex_address_mode wrap
-                scale 1.0 1.0
-                tex_coord_set 0
-                colour_op modulate
-            }
-            texture_unit 
-            {
-                texture iron_texture637.jpg
                 tex_address_mode wrap
                 scale 1.0 1.0
                 tex_coord_set 0

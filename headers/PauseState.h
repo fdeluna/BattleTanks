@@ -18,39 +18,45 @@
  * General Public License for more details.  
  *********************************************************************/
 
-#define UNUSED_VARIABLE(x) (void)x
+#ifndef PauseState_H
+#define PauseState_H
 
-#include "GameManager.h"
-#include "IntroState.h"
-#include "PlayState.h"
-#include "PauseState.h"
+#include <Ogre.h>
+#include <OIS/OIS.h>
 
-#include <iostream>
+#include "GameState.h"
 
-using namespace std;
+class PauseState : public Ogre::Singleton<PauseState>, public GameState
+{
+ public:
+  PauseState() {}
 
-int main () {
+  void enter ();
+  void exit ();
+  void pause ();
+  void resume ();
+  void createGUI();
+  void keyPressed (const OIS::KeyEvent &e);
+  void keyReleased (const OIS::KeyEvent &e);
 
-  GameManager* game = new GameManager();
-  IntroState* introState = new IntroState();
-  PlayState* playState = new PlayState();
-  PauseState* pauseState = new PauseState();
+  void mouseMoved (const OIS::MouseEvent &e);
+  void mousePressed (const OIS::MouseEvent &e, OIS::MouseButtonID id);
+  void mouseReleased (const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
-  UNUSED_VARIABLE(introState);
-  UNUSED_VARIABLE(playState);
-  UNUSED_VARIABLE(pauseState);
-    
-  try
-    {
-      // Inicializa el juego y transición al primer estado.
-      game->start(IntroState::getSingletonPtr());
-    }
-  catch (Ogre::Exception& e)
-    {
-      std::cerr << "Excepción detectada: " << e.getFullDescription();
-    }
-  
-  delete game;
-  
-  return 0;
-}
+  bool frameStarted (const Ogre::FrameEvent& evt);
+  bool frameEnded (const Ogre::FrameEvent& evt);
+
+  // Heredados de Ogre::Singleton.
+  static PauseState& getSingleton ();
+  static PauseState* getSingletonPtr ();
+
+ protected:
+  Ogre::Root* _root;
+  Ogre::SceneManager* _sceneMgr;
+  Ogre::Viewport* _viewport;
+  Ogre::Camera* _camera;
+
+  bool _exitGame;
+};
+
+#endif

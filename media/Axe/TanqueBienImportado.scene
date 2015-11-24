@@ -1,0 +1,65 @@
+<scene export_time="1447948511.956962" formatVersion="1.0.1" previous_export_time="1447948475.60025" exported_by="Luis" >
+  <nodes >
+    <node name="Cube.000" >
+      <position y="0.163560" z="-2.160438" x="-1.504168" />
+      <rotation qz="-0.000000" qy="1.000000" qw="0.000000" qx="0.000000" />
+      <scale y="0.266163" z="0.266163" x="0.266163" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_x="False" ghost="False" lock_trans_y="False" name="Cube.002" mass_radius="1.0" lock_trans_z="False" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" inertia_tensor="0.4000000059604645" anisotropic_friction="False" velocity_max="0.0" physics_type="STATIC" damping_rot="0.10000000149011612" velocity_min="0.0" lock_rot_x="False" actor="False" lock_rot_z="False" mass="1.0" lock_rot_y="False" meshFile="Cube.002.mesh" />
+    </node>
+    <node name="Cube.001" >
+      <position y="0.163560" z="-2.160438" x="-1.504168" />
+      <rotation qz="-0.000000" qy="1.000000" qw="0.000000" qx="0.000000" />
+      <scale y="0.266163" z="0.266163" x="0.266163" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_x="False" ghost="False" lock_trans_y="False" name="Cube.000" mass_radius="1.0" lock_trans_z="False" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" inertia_tensor="0.4000000059604645" anisotropic_friction="False" velocity_max="0.0" physics_type="STATIC" damping_rot="0.10000000149011612" velocity_min="0.0" lock_rot_x="False" actor="False" lock_rot_z="False" mass="1.0" lock_rot_y="False" meshFile="Cube.000.mesh" />
+    </node>
+    <node name="Lamp" >
+      <position y="7.084366" z="5.383261" x="-4.582962" />
+      <rotation qz="-0.272171" qy="0.755880" qw="0.570947" qx="0.169076" />
+      <scale y="1.000000" z="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light powerScale="1.0" name="Lamp" shadow="true" type="point" >
+        <position y="7.084366" z="5.383261" x="-4.582962" />
+        <lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.03333335240683057" />
+        <colourDiffuse r="1.0" b="1.0" g="1.0" />
+        <colourSpecular r="1.0" b="1.0" g="1.0" />
+        <colourShadow r="1.0" b="1.0" g="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position y="7.160308" z="6.507640" x="5.984814" />
+      <rotation qz="-0.212922" qy="0.334251" qw="0.781600" qx="0.481707" />
+      <scale y="1.000000" z="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera fov="0.8575560548920329" name="Camera" projectionType="perspective" >
+        <clipping near="0.10000000149011612" far="100.0" farPlaneDist="100.0" nearPlaneDist="0.10000000149011612" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Luis\Documents\EXPORT-BLENDER-OGRE\Axe\Material.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Luis\Documents\EXPORT-BLENDER-OGRE\Axe\Material.001.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourAmbient r="0.0" b="0.0" g="0.0" />
+  </environment>
+</scene>

@@ -1,26 +1,14 @@
 #include <Ogre.h>
 #include <OIS.h>
-#include <CEGUI\CEGUI.h>
-#include <OgreOverlaySystem.h>
-#include <OgreOverlayElement.h>
-#include <OgreOverlayManager.h>
-
-#define BOX 1 << 0  // Mascara para el escenario
-
-using namespace Ogre;
+#include <CEGUI.h>
 
 class MyFrameListener : public Ogre::FrameListener, OIS::KeyListener, OIS::MouseListener {
 private:
   OIS::InputManager* _inputManager;
   OIS::Keyboard* _keyboard;
   OIS::Mouse* _mouse;
-  Camera* _camera;
-  SceneNode *_node;
-  RenderWindow* _win;
-  OverlayManager* _overlayManager;
-  SceneManager* _sceneManager;
-  RaySceneQuery *_raySceneQuery;
-  SceneNode *_selectedNode;
+  Ogre::Camera* _camera;
+  Ogre::SceneNode *_node;
 
   bool keyPressed(const OIS::KeyEvent& evt);
   bool keyReleased(const OIS::KeyEvent& evt);
