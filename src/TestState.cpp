@@ -26,7 +26,7 @@ void TestState::enter()
 
 	_raySceneQuery = _sceneMgr->createRayQuery(Ray());
 
-	// GRID TEST
+	// GRID TEST	
 	Ogre::SceneNode* node1 = _sceneMgr->createSceneNode("PlayerGrid");
 	node1->setPosition(2, 0, -5);
 	node1->setScale(3.5, 0, 3.5);
