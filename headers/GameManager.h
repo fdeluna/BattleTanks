@@ -47,11 +47,12 @@ class GameManager : public Ogre::FrameListener, public Ogre::Singleton<GameManag
   // Heredados de Ogre::Singleton.
   static GameManager& getSingleton ();
   static GameManager* getSingletonPtr ();
-
+  
  protected:
   Ogre::Root* _root;
   Ogre::SceneManager* _sceneManager;
   Ogre::RenderWindow* _renderWindow;
+  InputManager *_inputMgr;
 
   // Funciones de configuración.
   void loadResources ();
@@ -72,7 +73,7 @@ class GameManager : public Ogre::FrameListener, public Ogre::Singleton<GameManag
   bool mouseReleased (const OIS::MouseEvent &e, OIS::MouseButtonID id);
   
   // Gestor de eventos de entrada.
-  InputManager *_inputMgr;
+  
   // Estados del juego.
   std::stack<GameState*> _states;
 };

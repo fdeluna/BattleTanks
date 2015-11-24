@@ -1,0 +1,51 @@
+material Cube1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.000000 0.000000 0.000000 63.25
+			texture_unit
+			{
+				texture Cube1_tex.tga
+			}
+		}
+	}
+}
+
+material Cube2
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.000000 0.000000 0.000000 63.25
+			texture_unit
+			{
+				texture Cube2_tex.tga
+			}
+		}
+	}
+}
+
+material red
+ {
+   technique
+   {
+     pass
+     {
+       scene_blend alpha_blend
+       depth_write off
+ 
+       texture_unit
+       {
+         colour_op_ex source1 src_manual src_current 1 0 0
+         alpha_op_ex source1 src_manual src_current 0.5
+       }
+     }
+   }
+ }

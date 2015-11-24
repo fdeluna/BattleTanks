@@ -18,8 +18,8 @@
 * General Public License for more details.
 *********************************************************************/
 
-#ifndef IntroState_H
-#define IntroState_H
+#ifndef TestState_H
+#define TestState_H
 
 #include <Ogre.h>
 #include <OIS/OIS.h>
@@ -53,12 +53,19 @@ public:
 	// Heredados de Ogre::Singleton.
 	static TestState& getSingleton();
 	static TestState* getSingletonPtr();
+		
 
-protected:
+private:
 	Root* _root;
 	SceneManager* _sceneMgr;
 	Viewport* _viewport;
 	Camera* _camera;
+
+
+
+	RaySceneQuery* _raySceneQuery;
+	Ray _mouseRay;
+	SceneNode *_selectedNode;
 
 	bool _exitGame;
 };
