@@ -39,7 +39,7 @@ void TestState::enter()
 			nameNode << "node_" << i << '_' << j;
 			nameEntity << "entity_" << i << '_' << j;
 			Ogre::Entity* ent1 = _sceneMgr->createEntity(nameEntity.str(), "Cube1.mesh");
-			ent1->setQueryFlags(GRIDNODE);
+			
 			Ogre::SceneNode* node = _sceneMgr->createSceneNode(nameNode.str());
 			node->attachObject(ent1);
 			node->setPosition(Ogre::Vector3(i*0.5, 0, j*0.5));
@@ -58,6 +58,7 @@ void TestState::enter()
 			nameEntity << "entity__" << i << '_' << j;
 			Ogre::Entity* ent1 = _sceneMgr->createEntity(nameEntity.str(), "Cube1.mesh");			
 			Ogre::SceneNode* node = _sceneMgr->createSceneNode(nameNode.str());
+			ent1->setQueryFlags(GRIDNODE);
 			node->attachObject(ent1);
 			node->setPosition(Ogre::Vector3(i*0.5, 0, j*0.5));
 			node2->addChild(node);
