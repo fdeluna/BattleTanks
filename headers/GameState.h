@@ -65,7 +65,6 @@ public:
 	void popState() {
 		GameManager::getSingletonPtr()->popState();
 	}
-
 };
 
 #endif

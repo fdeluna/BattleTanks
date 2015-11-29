@@ -72,9 +72,9 @@ void InputManager::initialise (Ogre::RenderWindow *renderWindow)
 void InputManager::capture()
 {
 	// Capturar y actualizar cada frame.
-	if (_mouse)
+	if (_mouse)	
 		_mouse->capture();
-
+			
 	if (_keyboard)
 		_keyboard->capture();
 }

@@ -21,13 +21,22 @@
 #ifndef TestState_H
 #define TestState_H
 
+#define GRIDNODE 1 << 0
+#define GRIDHEIGH 10
+#define GRIDWIDTH 10
+
+#include <vector>
 #include <Ogre.h>
 #include <OIS/OIS.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules/Ogre/Renderer.h>
 
 #include "GameState.h"
 
+
 using namespace Ogre;
 using namespace OIS;
+
 
 
 class TestState : public Singleton<TestState>, public GameState
@@ -53,7 +62,11 @@ public:
 	// Heredados de Ogre::Singleton.
 	static TestState& getSingleton();
 	static TestState* getSingletonPtr();
-		
+	CEGUI::MouseButton convertMouseButton(OIS::MouseButtonID id);
+
+
+
+	void createGUI();
 
 private:
 	Root* _root;
@@ -61,13 +74,26 @@ private:
 	Viewport* _viewport;
 	Camera* _camera;
 
-
-
-	RaySceneQuery* _raySceneQuery;
-	Ray _mouseRay;
-	SceneNode *_selectedNode;
+	//RaySceneQuery* _raySceneQuery;
+	//Ray _mouseRay;
+	SceneNode* _selectedNode;
 
 	bool _exitGame;
+
+	// CEGUI
+	CEGUI::OgreRenderer* renderer;
+	CEGUI::Window* formatWin;
+
+
+	float _timeSinceLastFrame;
+	float contador;
+	int numeroSegundos;
+	
+	std::vector<SceneNode*>  _playerGrid;
+	std::vector<SceneNode*>  _enemyGrid;	
+
+	SceneNode* getSceneNode(Ogre::Real const &x, Ogre::Real const &y, uint32 mask);	
+	void createGrid(SceneNode* node, uint32 mask, std::vector<SceneNode*>  &_grid);
 };
 
 #endif

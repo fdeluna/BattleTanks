@@ -134,6 +134,11 @@ GameManager& GameManager::getSingleton()
 	return *msSingleton;
 }
 
+InputManager* GameManager::getInputManager()
+{
+	return _inputMgr;
+}
+
 // Las siguientes funciones miembro delegan
 // el evento en el estado actual.
 bool GameManager::frameStarted (const Ogre::FrameEvent& evt)
