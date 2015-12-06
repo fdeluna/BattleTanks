@@ -21,7 +21,7 @@
 #define UNUSED_VARIABLE(x) (void)x
 
 #include "GameManager.h"
-#include "TestState.h"
+#include "PlayState.h"
 
 #include <iostream>
 
@@ -30,15 +30,15 @@ using namespace std;
 int main() {
 
 	GameManager* game = new GameManager();
-	TestState* testState = new TestState();
+	PlayState* playState = new PlayState();
 
-	UNUSED_VARIABLE(testState);
+	UNUSED_VARIABLE(playState);
 
 
 	try
 	{
 		// Inicializa el juego y transición al primer estado.
-		game->start(TestState::getSingletonPtr());
+		game->start(PlayState::getSingletonPtr());
 	}
 	catch (Ogre::Exception& e)
 	{
