@@ -21,7 +21,8 @@
 #ifndef PlayState_H
 #define PlayState_H
 
-#define GRIDNODE 1 << 0
+#define IA_GRID 1 << 0
+#define PLAYER_GRIDNODE 2 << 0
 
 #include <vector>
 #include <Ogre.h>
@@ -63,15 +64,18 @@ public:
 	
 	void createGUI();
 
-private:
+private:	
 	Root* _root;
 	SceneManager* _sceneMgr;
 	Viewport* _viewport;
 	Camera* _camera;
-	
+
+
+	GameFlow _gameflow = GameFlow::INIT;	
 	SceneNode* _selectedNode;
 
 	bool _exitGame;
+	bool _iaTurn;
 
 	// CEGUI
 	CEGUI::OgreRenderer* renderer;
@@ -79,15 +83,24 @@ private:
 
 	// ??
 	float _timeSinceLastFrame;
-	float contador;
-	int numeroSegundos;
+	float _turnTime;
+	Ogre::Real _contador;
+	
 
-	//GRID
+	//grid
 	std::vector< std::vector< Ogre::SceneNode*>>  _playerGrid;
-	std::vector< std::vector< Ogre::SceneNode*>>  _enemyGrid;
+	std::vector< std::vector< Ogre::SceneNode*>>  _IAGrid;
+	
+	// vehicles
+	std::vector<Vehicle*> _playerVehicles;
+	std::vector<Vehicle*> _IAVehicles;
 
+
+	// interaction with the grid
 	SceneNode* getSceneNode(Ogre::Real const &x, Ogre::Real const &y, uint32 mask);
-	void createGrid(SceneNode* node, uint32 mask, std::vector<std::vector<Ogre::SceneNode*>>  &_grid);		
-	bool PlayState::putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNode, Vehicle &vehicle, int x, int z);
+	void createGrid(SceneNode* node, uint32 mask, std::vector<std::vector<Ogre::SceneNode*>>  &_grid, std::vector<Vehicle*> &vehicles);		
+	bool putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNode, Vehicle &vehicle, int x, int z, bool render);
+	bool fire(SceneNode* node);
+	bool lose(std::vector<Vehicle*> &vehicles);
 };
 #endif

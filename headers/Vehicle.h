@@ -7,7 +7,7 @@
 class Vehicle
 {
 public:
-	Vehicle(int heigh, int width, VehicleType type, Ogre::Entity *ent, Ogre::SceneNode *node);
+	Vehicle(int heigh, int width, VehicleType type, Ogre::String name, Ogre::SceneManager &sceneMgr);
 	Vehicle();
 	~Vehicle();
 
@@ -15,7 +15,7 @@ public:
 	const int getHeigh();
 	const int getWidth();
 	const int getHP();
-	int getType();
+	VehicleType getType();
 	Ogre::Entity* getEntity();
 	Ogre::SceneNode* getNode();
 
@@ -29,10 +29,11 @@ public:
 	void render();
 
 private:
+	bool _renderer = false;
 	int _heigh;
 	int _width;
 	int _hp;
-	int _type;	
+	VehicleType _type;
 	Ogre::SceneNode *_node = NULL;
 	Ogre::Entity *_entity = NULL;
 	//lista nodos

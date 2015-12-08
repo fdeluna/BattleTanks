@@ -3,10 +3,14 @@
 template<> PlayState* Ogre::Singleton<PlayState>::msSingleton = 0;
 
 void PlayState::enter() {
-	std::vector<std::vector<bool> > _matrixPositionBusy(10,
-		std::vector<bool>(10));
 
 	MovableObject::setDefaultQueryFlags(0);
+
+	// Initialize Game flow
+	_gameflow = GameFlow::INIT;
+
+
+	// create scene manager for state
 	_root = Ogre::Root::getSingletonPtr();
 	_sceneMgr = _root->createSceneManager(Ogre::ST_GENERIC, "PlayState");
 	// set camera
@@ -24,103 +28,23 @@ void PlayState::enter() {
 
 	// set our skybox
 	_sceneMgr->setSkyBox(true, "SkyBox", 5000);
-	/*
-	 // Player gird//Show name of clicked sceneNode
-	 std::stringstream nodoAleatorioNombre;
-	 nodoAleatorioNombre.str("");
-	 nodoAleatorioNombre << _matrixPositionBusy[1][1];
-	 formatWin->getChild("Text1")->setText(nodoAleatorioNombre.str());
-	 Ogre::SceneNode* node1 = _sceneMgr->createSceneNode("PlayerGrid");
-	 node1->setPosition(2, 0, -5);
-	 node1->setScale(3.5, 0.5, 3.5);
-	 createGrid(node1,NULL,_playerGrid);
-	 */
-	// IA gird
-	Ogre::SceneNode* node2 = _sceneMgr->createSceneNode("IAGrid");
-	node2->setPosition(0, 0, 10);
-	//node2->setScale(3.5, 0.5, 3.5);
-	createGrid(node2, GRIDNODE, _enemyGrid);
-
-	// Add grids to scene
-	//_sceneMgr->getRootSceneNode()->addChild(node1);
-	_sceneMgr->getRootSceneNode()->addChild(node2);
-	_selectedNode = NULL;
-
-	createGUI();
-	Ogre::SceneNode* nodeTank = _sceneMgr->createSceneNode("Tank");
-	Ogre::Entity* entityTank = _sceneMgr->createEntity("Tank",
-		"Cube.057.mesh");
-	Ogre::SceneNode* nodeTank2 = _sceneMgr->createSceneNode("Tank2");
-	Ogre::Entity* entityTank2 = _sceneMgr->createEntity("Tank2",
-		"Cube.057.mesh");
-	Ogre::SceneNode* nodeTank3 = _sceneMgr->createSceneNode("Tank3");
-	Ogre::Entity* entityTank3 = _sceneMgr->createEntity("Tank3",
-		"Cube.057.mesh");
-	Ogre::SceneNode* nodeTank4 = _sceneMgr->createSceneNode("Tank4");
-	Ogre::Entity* entityTank4 = _sceneMgr->createEntity("Tank4",
-		"Cube.057.mesh");
-	Ogre::SceneNode* nodeTank5 = _sceneMgr->createSceneNode("Tank5");
-	Ogre::Entity* entityTank5 = _sceneMgr->createEntity("Tank5",
-		"Cube.057.mesh");
-
-	node2->addChild(nodeTank);
-	node2->addChild(nodeTank2);
-	node2->addChild(nodeTank3);
-	node2->addChild(nodeTank4);
-	node2->addChild(nodeTank5);
-
-	Vehicle* tank = new Vehicle(2, 2, VehicleType::TANK, entityTank, nodeTank);
-	Vehicle* tank2 = new Vehicle(2, 2, VehicleType::TANK, entityTank2, nodeTank2);
-	Vehicle* tank3 = new Vehicle(2, 2, VehicleType::TANK, entityTank3, nodeTank3);
-	Vehicle* tank4 = new Vehicle(2, 2, VehicleType::TANK, entityTank4, nodeTank4);
-	Vehicle* tank5 = new Vehicle(2, 2, VehicleType::TANK, entityTank5, nodeTank5);
-
-	std::cout << putVehicle(_enemyGrid, *tank, 0, 0);
-
 	srand(time(NULL));
-	int randI = 1;
-	int randJ = 0;
-
-	while (!putVehicle(_enemyGrid, *tank2, randI, randJ))
-	{
-		randI = rand() % 9;
-		randJ = rand() % 9;
-	}
-
-	while (!putVehicle(_enemyGrid, *tank3, randI, randJ))
-	{
-		randI = rand() % 9;
-		randJ = rand() % 9;
-	}
-
-
-	while (!putVehicle(_enemyGrid, *tank4, randI, randJ))
-	{
-		randI = rand() % 9;
-		randJ = rand() % 9;
-	}
-
-	while (!putVehicle(_enemyGrid, *tank5, randI, randJ))
-	{
-		randI = rand() % 9;
-		randJ = rand() % 9;
-	}
-	//std::cout << putVehicle(_enemyGrid, *tank2, 0, 0);
-
-	//putTank(node2, _matrixPositionBusy);
-	//putTruck(node2, _matrixPositionBusy);
-	//putMissileLauncher(node2, _matrixPositionBusy);
-	//putSoldiers(node2, _matrixPositionBusy);
-
-
+	createGUI();
 }
 
-void PlayState::exit() {
+void PlayState::exit() 
+{	
+	
+	_playerGrid.clear();
+	_IAGrid.clear();
+	_playerVehicles.clear();
+	_IAVehicles.clear();
 	_sceneMgr->clearScene();
-	_root->getAutoCreatedWindow()->removeAllViewports();
+	_root->getAutoCreatedWindow()->removeAllViewports();	
 }
 
 void PlayState::pause() {
+
 }
 
 void PlayState::resume() {
@@ -129,6 +53,101 @@ void PlayState::resume() {
 bool PlayState::frameStarted(const Ogre::FrameEvent& evt) {
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(
 		evt.timeSinceLastFrame);
+
+	switch (_gameflow)
+	{
+	case GameFlow::INIT:
+	{
+		// Player grid
+		Ogre::SceneNode* node1 = _sceneMgr->createSceneNode("PlayerGrid");
+		node1->setPosition(20, 0, 10);
+		createGrid(node1, PLAYER_GRIDNODE, _playerGrid, _playerVehicles);
+		
+		// Player vehicles
+		for (Vehicle *v : _playerVehicles)
+		{
+			int randX = rand() % 9;
+			int randZ = rand() % 9;
+			while (!putVehicle(_playerGrid, *v, randX, randZ, true))
+			{
+				randX = rand() % 9;
+				randZ = rand() % 9;
+			}
+		}
+
+		// IA grid
+		Ogre::SceneNode* node2 = _sceneMgr->createSceneNode("IAGrid");
+		node2->setPosition(-5, 0, 10);
+		createGrid(node2, IA_GRID, _IAGrid, _IAVehicles);
+
+		// IA vehicles
+		for (Vehicle *v : _IAVehicles)
+		{
+			int randX = rand() % 9;
+			int randZ = rand() % 9;
+			while (!putVehicle(_IAGrid, *v, randX, randZ, false))
+			{
+				randX = rand() % 9;
+				randZ = rand() % 9;
+			}
+		}
+
+		// Add grids to scene
+		_sceneMgr->getRootSceneNode()->addChild(node1);
+		_sceneMgr->getRootSceneNode()->addChild(node2);
+		_selectedNode = NULL;
+		
+		_gameflow = GameFlow::PLAY;
+		_iaTurn = rand() % 2;
+	}
+	break;
+	case GameFlow::PLAY:
+	{
+		if (_iaTurn)
+		{		
+			_contador += evt.timeSinceLastFrame;
+			std::cout << "****************" << std::endl;
+			std::cout << "TIEMPO:" << _contador;
+			std::cout << "****************" << std::endl;
+			if (_contador >= 2.5){
+				try{
+					int randX = rand() % 10;
+					int randZ = rand() % 10;
+					if (_playerGrid[randX][randZ]->getAttachedObject(0)->getQueryFlags())
+					{
+						while (!fire(_playerGrid[randX][randZ]))
+						{
+							randX = rand() % 10;
+							randZ = rand() % 10;
+						}
+						std::cout << "****************" << std::endl;
+						std::cout << "DISPARADO: X=" << randX << "," << "Z=" << randZ << std::endl;
+						std::cout << "****************" << std::endl;
+						//_contador++;						
+						_iaTurn = false;
+						_contador = rand() % 2 + 1;									
+
+					}
+					else
+					{
+						_iaTurn = true;
+					}
+				}
+				catch (Ogre::Exception& e)
+				{
+					_iaTurn = true;
+				}
+			}
+		}
+	}
+	break;
+	case GameFlow::GAMEOVER:
+	{		
+		changeState(PlayState::getSingletonPtr());
+	}
+	break;
+	}
+
 
 	// switch ESTADO PLAY
 	// INICIO- PONEMOS LOS BARCOS
@@ -139,17 +158,31 @@ bool PlayState::frameStarted(const Ogre::FrameEvent& evt) {
 	return true;
 }
 
-bool PlayState::frameEnded(const Ogre::FrameEvent& evt) {
+bool PlayState::frameEnded(const Ogre::FrameEvent& evt) 
+{
+	if (lose(_playerVehicles))
+	{
+		std::cout << "IA WINS";
+		_gameflow = GameFlow::GAMEOVER;
+	}
+	if (lose(_IAVehicles))
+	{
+		std::cout << "Players WINS";
+		_gameflow = GameFlow::GAMEOVER;
+	}
+
 	if (_exitGame)
 		return false;
 
 	return true;
 }
 
-void PlayState::keyPressed(const OIS::KeyEvent &e) {
+void PlayState::keyPressed(const OIS::KeyEvent &e) 
+{
 }
 
-void PlayState::keyReleased(const OIS::KeyEvent &e) {
+void PlayState::keyReleased(const OIS::KeyEvent &e) 
+{
 	if (e.key == OIS::KC_ESCAPE) {
 		_exitGame = true;
 	}
@@ -159,34 +192,34 @@ void PlayState::mouseMoved(const OIS::MouseEvent &e) {
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(
 		e.state.X.rel, e.state.Y.rel);
 
-	Ogre::Real normX = Ogre::Real(e.state.X.abs) / e.state.width;
-	Ogre::Real normY = Ogre::Real(e.state.Y.abs) / e.state.height;
+	if (!_iaTurn)
+	{
+		Ogre::Real normX = Ogre::Real(e.state.X.abs) / e.state.width;
+		Ogre::Real normY = Ogre::Real(e.state.Y.abs) / e.state.height;
 
-	std::stringstream nombre;
-	if (_selectedNode) {
-		nombre.str("");
-		nombre << _selectedNode->getName();
-		formatWin->getChild("Text2")->setText(nombre.str());
+		std::stringstream nombre;
+		if (_selectedNode) {
+			nombre.str("");
+			nombre << _selectedNode->getName();
+			formatWin->getChild("Text2")->setText(nombre.str());
+		}
+
+		SceneNode* aux = getSceneNode(normX, normY, IA_GRID);
+
+		if (!_selectedNode && aux) {
+			_selectedNode = aux;
+		}
+
+		if (_selectedNode != aux) {
+			static_cast<Entity*> (_selectedNode->getAttachedObject(0))->setMaterialName(
+				"Cube1");
+			_selectedNode = aux;
+		}
+		else if (_selectedNode) {
+			static_cast<Entity*> (_selectedNode->getAttachedObject(0))->setMaterialName(
+				"red");
+		}
 	}
-
-	//OPTIMIZE // REFACTOR
-	//MOUSE OVER BEHAVIOUR
-	SceneNode* aux = getSceneNode(normX, normY, GRIDNODE);
-
-	if (!_selectedNode && aux) {
-		_selectedNode = aux;
-	}
-
-	if (_selectedNode != aux) {
-		static_cast<Entity*> (_selectedNode->getAttachedObject(0))->setMaterialName(
-			"Cube1");
-		_selectedNode = aux;
-	}
-	else if (_selectedNode) {
-		static_cast<Entity*> (_selectedNode->getAttachedObject(0))->setMaterialName(
-			"red");
-	}
-
 }
 
 void PlayState::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id) {
@@ -198,44 +231,53 @@ void PlayState::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id) {
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(
 		convertMouseButton(id));
 
-	if (convertMouseButton(id) == CEGUI::LeftButton) {
-		std::stringstream posicion2;
-		posicion2 << "(" << e.state.X.abs << "," << e.state.Y.abs << ","
-			<< e.state.Z.abs << ")";
-		formatWin->getChild("Text3")->setText(posicion2.str());
-		Ogre::Real normX = Ogre::Real(e.state.X.abs) / e.state.width;
-		Ogre::Real normY = Ogre::Real(e.state.Y.abs) / e.state.height;
-		SceneNode* aux = getSceneNode(normX, normY, GRIDNODE);
-
-		// TODO USE PRIVATE NODE TO GET SELECTED_NODE
-		if (aux){
-
-			static_cast<Entity*>(aux->getAttachedObject(0))->setQueryFlags(NULL);
-			static_cast<Entity*> (aux->getAttachedObject(0))->setMaterialName(
-				"Cube1");
-
-			_selectedNode = NULL;
-			Vehicle* vAux = NULL;
-			try
-			{
-				vAux = Ogre::any_cast<Vehicle*>(aux->getUserObjectBindings().getUserAny());
-			}
-			catch (Ogre::Exception& e){}
-
-			if (vAux)
-			{
-				vAux->decreaseHP();
-				if (vAux->isDead()){
-					vAux->render();
-				}
-				Ogre::ParticleSystem* partSystem = _sceneMgr->createParticleSystem(aux->getName() + "Smoke", "Smoke");
-				aux->attachObject(partSystem);
-			}			
-			// PARICULE SIZE WHEN MODEL IS DISPLAYED
-			//partSystem->setParameter("particle_width","3");
-			//partSystem->setParameter("particle_height", "3");						
+	if (!_iaTurn)
+	{
+		if (convertMouseButton(id) == CEGUI::LeftButton) {
+			std::stringstream posicion2;
+			posicion2 << "(" << e.state.X.abs << "," << e.state.Y.abs << ","
+				<< e.state.Z.abs << ")";
+			formatWin->getChild("Text3")->setText(posicion2.str());
+			Ogre::Real normX = Ogre::Real(e.state.X.abs) / e.state.width;
+			Ogre::Real normY = Ogre::Real(e.state.Y.abs) / e.state.height;
+			SceneNode* aux = getSceneNode(normX, normY, IA_GRID);
+			_iaTurn = fire(aux);
 		}
 	}
+}
+
+bool PlayState::fire(SceneNode* node)
+{
+	bool fire = false;
+	_selectedNode = NULL;
+	if (node)
+	{
+		static_cast<Entity*>(node->getAttachedObject(0))->setQueryFlags(NULL);
+		static_cast<Entity*> (node->getAttachedObject(0))->setMaterialName("Crater");
+		Vehicle* vAux = NULL;
+		try
+		{
+			vAux = Ogre::any_cast<Vehicle*>(node->getUserObjectBindings().getUserAny());
+		}
+		catch (Ogre::Exception& e){}
+
+		if (vAux)
+		{
+			vAux->decreaseHP();
+			if (vAux->isDead()){
+				vAux->render();
+			}
+			Ogre::ParticleSystem* partSystem = _sceneMgr->createParticleSystem(node->getName() + "Smoke", "Smoke");
+			node->attachObject(partSystem);
+		}
+		fire = true;
+	}
+
+	// PARICULE SIZE WHEN MODEL IS DISPLAYED
+	//partSystem->setParameter("particle_width","3");
+	//partSystem->setParameter("particle_height", "3");						
+
+	return fire;
 }
 
 PlayState* PlayState::getSingletonPtr() {
@@ -245,6 +287,26 @@ PlayState* PlayState::getSingletonPtr() {
 PlayState& PlayState::getSingleton() {
 	assert(msSingleton);
 	return *msSingleton;
+}
+
+
+//Conversion mouse
+CEGUI::MouseButton PlayState::convertMouseButton(OIS::MouseButtonID id) {
+	CEGUI::MouseButton ceguiId;
+	switch (id) {
+	case OIS::MB_Left:
+		ceguiId = CEGUI::LeftButton;
+		break;
+	case OIS::MB_Right:
+		ceguiId = CEGUI::RightButton;
+		break;
+	case OIS::MB_Middle:
+		ceguiId = CEGUI::MiddleButton;
+		break;
+	default:
+		ceguiId = CEGUI::LeftButton;
+	}
+	return ceguiId;
 }
 
 void PlayState::createGUI() {
@@ -308,25 +370,6 @@ void PlayState::createGUI() {
 		= CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y;
 }
 
-//Conversion mouse
-CEGUI::MouseButton PlayState::convertMouseButton(OIS::MouseButtonID id) {
-	CEGUI::MouseButton ceguiId;
-	switch (id) {
-	case OIS::MB_Left:
-		ceguiId = CEGUI::LeftButton;
-		break;
-	case OIS::MB_Right:
-		ceguiId = CEGUI::RightButton;
-		break;
-	case OIS::MB_Middle:
-		ceguiId = CEGUI::MiddleButton;
-		break;
-	default:
-		ceguiId = CEGUI::LeftButton;
-	}
-	return ceguiId;
-}
-
 // Return node from ray match with mask
 SceneNode* PlayState::getSceneNode(Ogre::Real const &x, Ogre::Real const &y,
 	uint32 mask) {
@@ -351,12 +394,13 @@ SceneNode* PlayState::getSceneNode(Ogre::Real const &x, Ogre::Real const &y,
 }
 // Creategrid from node position
 void PlayState::createGrid(SceneNode* gridNode, uint32 mask,
-	std::vector<std::vector<Ogre::SceneNode*>> &_grid) {
+	std::vector<std::vector<Ogre::SceneNode*>> &_grid, std::vector<Vehicle*> &vehicles) {
 
 	std::vector<SceneNode*> nodeRow;
 	std::stringstream nameNode;
 	std::stringstream nameEntity;
 
+	// Create grid
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			// Build unique name for child node
@@ -380,22 +424,60 @@ void PlayState::createGrid(SceneNode* gridNode, uint32 mask,
 		_grid.push_back(nodeRow);
 		nodeRow.clear();
 	}
+
+	//Create vehicles
+	Vehicle* soldier = new Vehicle(1, 2, VehicleType::SOLDIER, Ogre::String(gridNode->getName()).append("_soldier"), *_sceneMgr);
+	Vehicle* truck1 = new Vehicle(1, 3, VehicleType::TRUCK, Ogre::String(gridNode->getName()).append("_truck1"), *_sceneMgr);
+	Vehicle* truck2 = new Vehicle(1, 3, VehicleType::TRUCK, Ogre::String(gridNode->getName()).append("_truck2"), *_sceneMgr);
+	Vehicle* tank = new Vehicle(2, 2, VehicleType::TANK, Ogre::String(gridNode->getName()).append("_tank"), *_sceneMgr);
+	Vehicle* missileLauncher = new Vehicle(2, 3, VehicleType::MISSILE_LAUNCHER, Ogre::String(gridNode->getName()).append("_missile"), *_sceneMgr);
+	// ADD vehicles to gridNode
+	gridNode->addChild(soldier->getNode());
+	gridNode->addChild(truck1->getNode());
+	gridNode->addChild(truck2->getNode());
+	gridNode->addChild(tank->getNode());
+	gridNode->addChild(missileLauncher->getNode());
+	// ADD vehicles to vechicles vector
+	vehicles.push_back(soldier);
+	vehicles.push_back(truck1);
+	vehicles.push_back(truck2);
+	vehicles.push_back(tank);
+	vehicles.push_back(missileLauncher);
 }
 
 // TODO COMMENT
-bool PlayState::putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNode, Vehicle &vehicle, int x, int z)
+bool PlayState::putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNode, Vehicle &vehicle, int x, int z, bool render)
 {
 	bool allow = true;
 	int randOrientacion = rand() % 2;
 
-	int heigh = randOrientacion == 1 ? vehicle.getHeigh() : vehicle.getWidth();
-	int width = randOrientacion == 1 ? vehicle.getWidth() : vehicle.getHeigh();
+	int heigh = 0;
+	int width = 0;
+	Ogre::Real yaw = 0;
+
+	if (randOrientacion == 1)
+	{
+		heigh = vehicle.getHeigh();
+		width = vehicle.getWidth();
+		yaw = 90;
+	}
+	else
+	{
+		heigh = vehicle.getWidth();
+		width = vehicle.getHeigh();
+		yaw = 180;
+	}
 
 	std::vector<SceneNode*> vNodes;
 
-	for (int i = x; i < heigh + x; i++)
+	heigh += x;
+	width += z;
+
+	allow = heigh < gridNode.size() && width < gridNode.size() ? true : false;
+
+	for (int i = x; i < heigh && allow; i++)
 	{
-		for (int j = z; j < width + z && allow; j++)
+		for (int j = z; j < width && allow; j++)
 		{
 			Vehicle* vAux = NULL;
 			try
@@ -413,7 +495,7 @@ bool PlayState::putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNod
 			{
 				gridNode[i][j]->getUserObjectBindings().setUserAny(Ogre::Any(&vehicle));
 				vNodes.push_back(gridNode[i][j]);
-			}			
+			}
 		}
 	}
 
@@ -430,16 +512,26 @@ bool PlayState::putVehicle(std::vector< std::vector< Ogre::SceneNode*>> &gridNod
 		nodeName << "Vehicle_" << x << "_" << z;
 		vehicle.getNode()->setPosition(gridNode[x][z]->getPosition());
 		vehicle.getNode()->translate(-1, 2.3, -1);
-		vehicle.getNode()->yaw(Degree(90));
+		vehicle.getNode()->yaw(Degree(yaw));
 		vehicle.getNode()->setScale(0.28, 0.28, 0.2);
-
-		//vehicle.render();
+		if (render)
+		{
+			vehicle.render();
+		}
 		std::cout << nodeName.str() << std::endl;
 		std::cout << "X:" << x << std::endl;
 		std::cout << "Z:" << z << std::endl;
-		//Change to gridNode
-		//gridNode[x][z]->addChild(nodeTank);
-		//_sceneMgr->getRootSceneNode()->addChild(vehicle.getNode());
 	}
 	return allow;
+}
+
+bool PlayState::lose(std::vector<Vehicle*> &vehicles)
+{
+	bool lose = true;
+
+	for (Vehicle *v : vehicles)
+	{
+		lose &= v->isDead();
+	}
+	return lose;
 }
