@@ -21,22 +21,27 @@ public:
 
 	void setEntity(Ogre::Entity &ent);
 	void setNode(Ogre::SceneNode &ent);
+	void setPosition(const Ogre::Vector3 &pos, Ogre::Real &yaw);
 	void setHeigh(int heigh);
 	void setWidth(int width);
 	void setHP(int hp);
 
 	void decreaseHP();
 	void render();
+	void addGridNode(Ogre::SceneNode* gridnode);
 
 private:
 	bool _renderer = false;
+	bool dead = false;
 	int _heigh;
 	int _width;
 	int _hp;
 	VehicleType _type;
 	Ogre::SceneNode *_node = NULL;
 	Ogre::Entity *_entity = NULL;
-	//lista nodos
+
+	std::vector<Ogre::SceneNode*> _gridNodes;
+	
 };
 
 #endif

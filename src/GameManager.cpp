@@ -116,7 +116,7 @@ bool GameManager::configure()
 		}
 	}
 
-	_renderWindow = _root->initialise(true, "Game State Example");
+	_renderWindow = _root->initialise(true, "Battle Tanks");
 
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 

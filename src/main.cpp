@@ -1,8 +1,8 @@
 /*********************************************************************
-* Módulo 1. Curso de Experto en Desarrollo de Videojuegos
-* Autor: David Vallejo Fernández    David.Vallejo@uclm.es
+* Mï¿½dulo 1. Curso de Experto en Desarrollo de Videojuegos
+* Autor: David Vallejo Fernï¿½ndez    David.Vallejo@uclm.es
 *
-* Código modificado a partir de Managing Game States with OGRE
+* Cï¿½digo modificado a partir de Managing Game States with OGRE
 * http://www.ogre3d.org/tikiwiki/Managing+Game+States+with+OGRE
 * Inspirado en Managing Game States in C++
 * http://gamedevgeek.com/tutorials/managing-game-states-in-c/
@@ -22,30 +22,28 @@
 
 #include "GameManager.h"
 #include "PlayState.h"
-
+#include "IntroState.h"
 #include <iostream>
-
-using namespace std;
 
 int main() {
 
 	GameManager* game = new GameManager();
 	PlayState* playState = new PlayState();
+	IntroState* introState = new IntroState();
 
 	UNUSED_VARIABLE(playState);
-
+	UNUSED_VARIABLE(introState);
 
 	try
 	{
-		// Inicializa el juego y transición al primer estado.
-		game->start(PlayState::getSingletonPtr());
+		// Inicializa el juego y transiciï¿½n al primer estado.
+		game->start(IntroState::getSingletonPtr());
 	}
 	catch (Ogre::Exception& e)
 	{
-		cerr << "Excepción detectada: " << e.getFullDescription();
+		std::cerr << "Excepciï¿½n detectada: " << e.getFullDescription();
 	}
 
 	delete game;
-
 	return 0;
 }

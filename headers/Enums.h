@@ -13,7 +13,8 @@ enum class GameFlow
 {
 	INIT,
 	PLAY,
-	GAMEOVER
+	GAMEOVER,
+	PAUSE,
+	WIN
 };
-
 #endif
