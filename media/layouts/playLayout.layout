@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="DefaultWindow" name="DefaultWindow" >
+        <Property name="Area" value="{{0,-2},{0,1},{1,-2},{1,1}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Property name="MouseCursorImage" value="TaharezLook/MouseArrow" />
+        <Window type="TaharezLook/ImageButton" name="FondoPause" >
+            <Property name="Area" value="{{0,412},{0,305},{0,643},{0,556}}" />
+            <Property name="Visible" value="false" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+            <Window type="TaharezLook/Button" name="Resume" >
+                <Property name="Area" value="{{0,58},{0,100},{0,168},{0,140}}" />
+                <Property name="Text" value="RESUME" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="HoverTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                <Property name="PushedTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="DisabledTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+            <Window type="TaharezLook/Label" name="LabelPause" >
+                <Property name="Area" value="{{0,47},{0,31},{0,175},{0,63}}" />
+                <Property name="Text" value="PAUSE" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FF000000" />
+                <Property name="DisabledTextColour" value="FF000000" />
+            </Window>
+            <Window type="TaharezLook/Button" name="Exit" >
+                <Property name="Area" value="{{0,58},{0,165},{0,168},{0,205}}" />
+                <Property name="Text" value="EXIT" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="HoverTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                <Property name="PushedTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="DisabledTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton4" >
+                <Property name="Area" value="{{0,211},{0,232},{0,225},{0,246}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton3" >
+                <Property name="Area" value="{{0,9},{0,231},{0,23},{0,245}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton2" >
+                <Property name="Area" value="{{0,210},{0,8},{0,224},{0,22}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton" >
+                <Property name="Area" value="{{0,8},{0,7},{0,22},{0,21}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+        </Window>
+        <Window type="TaharezLook/ImageButton" name="FondoGameOver" >
+            <Property name="Area" value="{{0,410},{0,305},{0,641},{0,556}}" />
+            <Property name="Visible" value="false" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+            <Window type="TaharezLook/Button" name="Retry" >
+                <Property name="Area" value="{{0,58},{0,100},{0,168},{0,140}}" />
+                <Property name="Text" value="RETRY" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="HoverTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                <Property name="PushedTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="DisabledTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+            <Window type="TaharezLook/Button" name="Exit" >
+                <Property name="Area" value="{{0,58},{0,165},{0,168},{0,205}}" />
+                <Property name="Text" value="EXIT" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="HoverTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                <Property name="PushedTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="DisabledTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton4" >
+                <Property name="Area" value="{{0,211},{0,232},{0,225},{0,246}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton3" >
+                <Property name="Area" value="{{0,9},{0,231},{0,23},{0,245}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton2" >
+                <Property name="Area" value="{{0,210},{0,8},{0,224},{0,22}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton" >
+                <Property name="Area" value="{{0,8},{0,7},{0,22},{0,21}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/StaticImage" name="LoseTittle" >
+                <Property name="Area" value="{{0,11},{0,28},{0,218},{0,78}}" />
+                <Property name="Image" value="TaharezLook/LoseTittle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            </Window>
+        </Window>
+        <Window type="TaharezLook/ImageButton" name="BackgroundScore" >
+            <Property name="Area" value="{{0,828},{0,19},{0,967},{0,96}}" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+        </Window>
+        <Window type="TaharezLook/Label" name="ScorePlayer" >
+            <Property name="Area" value="{{0,832},{0,24},{0,960},{0,56}}" />
+            <Property name="Text" value="SCORE" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FF000000" />
+            <Property name="DisabledTextColour" value="FF000000" />
+        </Window>
+        <Window type="TaharezLook/Label" name="ScoreText" >
+            <Property name="Area" value="{{0,835},{0,54},{0,963},{0,86}}" />
+            <Property name="Text" value="0" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FF000000" />
+            <Property name="DisabledTextColour" value="FF000000" />
+        </Window>
+        <Window type="TaharezLook/ImageButton" name="BackgroundTurn" >
+            <Property name="Area" value="{{0,91},{0,29},{0,300},{0,89}}" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+        </Window>
+        <Window type="TaharezLook/StaticText" name="Turn" >
+            <Property name="Area" value="{{0,91},{0,29},{0,300},{0,90}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="TextColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            <Property name="FrameEnabled" value="false" />
+            <Property name="HorzFormatting" value="CentreAligned" />
+            <Property name="HorzScrollPageSize" value="209" />
+            <Property name="VertScrollPageSize" value="61" />
+        </Window>
+        <Window type="TaharezLook/ImageButton" name="BackgroundTime" >
+            <Property name="Area" value="{{0,486},{0,20},{0,567},{0,97}}" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+        </Window>
+        <Window type="TaharezLook/StaticText" name="GameTime" >
+            <Property name="Area" value="{{0,487},{0,18},{0,567},{0,96}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameEnabled" value="false" />
+            <Property name="HorzScrollPageSize" value="80" />
+            <Property name="VertScrollPageSize" value="66" />
+            <Window type="TaharezLook/Label" name="LabelTime" >
+                <Property name="Area" value="{{0,-24},{0,1},{0,104},{0,33}}" />
+                <Property name="Text" value="TIME" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FF000000" />
+            </Window>
+        </Window>
+        <Window type="TaharezLook/ImageButton" name="FondoWin" >
+            <Property name="Area" value="{{0,338},{0,240},{0.0734375,634},{0.0805556,579}}" />
+            <Property name="Visible" value="false" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+            <Window type="TaharezLook/ImageButton" name="Boton4" >
+                <Property name="Area" value="{{0,368},{0,375},{0,382},{0,389}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton3" >
+                <Property name="Area" value="{{0,8},{0,377},{0,22},{0,391}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton2" >
+                <Property name="Area" value="{{0,369},{0,8},{0,383},{0,22}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/ImageButton" name="Boton" >
+                <Property name="Area" value="{{0,8},{0,7},{0,22},{0,21}}" />
+                <Property name="HoverImage" value="TaharezLook/whiteButton" />
+                <Property name="NormalImage" value="TaharezLook/whiteButton" />
+                <Property name="PushedImage" value="TaharezLook/whiteButton" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButton" />
+            </Window>
+            <Window type="TaharezLook/Label" name="LabelYourScore" >
+                <Property name="Area" value="{{0,154},{0,102},{0,236},{0,134}}" />
+                <Property name="Text" value="SCORE" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FF000000" />
+                <Property name="DisabledTextColour" value="FF000000" />
+            </Window>
+            <Window type="TaharezLook/Label" name="LabelScore" >
+                <Property name="Area" value="{{0,156},{0,153},{0,238},{0,185}}" />
+                <Property name="Text" value="----" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FF000000" />
+                <Property name="DisabledTextColour" value="FF000000" />
+            </Window>
+            <Window type="TaharezLook/Label" name="EnterName" >
+                <Property name="Area" value="{{0,14},{0,207},{0.25544,129},{0,239}}" />
+                <Property name="Text" value="PLEASE ENTER NAME:" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FF000000" />
+                <Property name="DisabledTextColour" value="FF000000" />
+            </Window>
+            <Window type="TaharezLook/Button" name="Save" >
+                <Property name="Area" value="{{0,131},{0,287},{-0.003188,284},{-0.0148459,327}}" />
+                <Property name="Text" value="SAVE" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="HoverTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                <Property name="PushedTextColour" value="tl:64000000 tr:64000000 bl:64000000 br:64000000" />
+                <Property name="DisabledTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+            <Window type="TaharezLook/StaticImage" name="WinTittle" >
+                <Property name="Area" value="{{0,121},{0,25},{0,274},{0,79}}" />
+                <Property name="Image" value="TaharezLook/winTittle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="BackgroundColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            </Window>
+            <Window type="TaharezLook/Editbox" name="NameText" >
+                <Property name="Area" value="{{0,239},{0,207},{0,353},{0,239}}" />
+                <Property name="NormalTextColour" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

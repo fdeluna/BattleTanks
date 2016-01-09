@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="DefaultWindow" name="DefaultWindow" >
+        <Property name="Area" value="{{0,0},{0,1},{1,0},{1,1}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Window type="TaharezLook/ImageButton" name="ImageButton" >
+            <Property name="Area" value="{{0,473},{0,210},{0,765},{0,548}}" />
+            <Property name="HoverImage" value="TaharezLook/fondoBlue" />
+            <Property name="NormalImage" value="TaharezLook/fondoBlue" />
+            <Property name="PushedImage" value="TaharezLook/fondoBlue" />
+            <Property name="DisabledImage" value="TaharezLook/fondoBlue" />
+            <Window type="TaharezLook/Label" name="Label" >
+                <Property name="Area" value="{{0,557},{0,272},{0,685},{0,304}}" />
+                <Property name="Font" value="DejaVuSans-12" />
+                <Property name="Text" value="GAME OVER" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            </Window>
+            <Window type="TaharezLook/Button" name="Button" >
+                <Property name="Area" value="{{0,557},{0,351},{0,684},{0,388}}" />
+                <Property name="Text" value="PLAY" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="DisabledTextColour" value="tl:FF7F7F7F tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" />
+            </Window>
+            <Window type="TaharezLook/Button" name="Button2" >
+                <Property name="Area" value="{{0,555},{0,419},{0,683},{0,456}}" />
+                <Property name="Text" value="EXIT" />
+                <Property name="HoverImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="NormalImage" value="TaharezLook/whiteButtonUp" />
+                <Property name="PushedImage" value="TaharezLook/whiteButtonDown" />
+                <Property name="DisabledImage" value="TaharezLook/whiteButtonUp" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>
