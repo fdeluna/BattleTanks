@@ -1,6 +1,4 @@
 /*********************************************************************
-* M�dulo 1. Curso de Experto en Desarrollo de Videojuegos
-* Autor: David Vallejo Fern�ndez    David.Vallejo@uclm.es
 *
 * C�digo modificado a partir de Managing Game States with OGRE
 * http://www.ogre3d.org/tikiwiki/Managing+Game+States+with+OGRE
@@ -34,7 +32,6 @@
 
 #include "GameState.h"
 #include "Vehicle.h"
-#include "Enums.h"
 
 class PlayState : public Ogre::Singleton<PlayState>, public GameState
 {
@@ -69,6 +66,14 @@ private:
 	Ogre::Viewport* _viewport;
 	Ogre::Camera* _camera;
 
+	enum GameFlow
+	{
+		INIT,
+		PLAY,
+		GAMEOVER,
+		PAUSE,
+		WIN
+	};
 
 	GameFlow _gameflow = GameFlow::INIT;
 	Ogre::SceneNode* _selectedNode;

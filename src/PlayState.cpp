@@ -365,13 +365,13 @@ bool PlayState::fire(Ogre::SceneNode* node) {
 				if (!_iaTurn) {
 					switch (vAux->getType())
 					{
-					case VehicleType::SOLDIER:
+					case Vehicle::VehicleType::SOLDIER:
 						_score += 30;
 						break;
-					case VehicleType::TRUCK:
+					case Vehicle::VehicleType::TRUCK:
 						_score += 50;
 						break;
-					case VehicleType::TANK:
+					case Vehicle::VehicleType::TANK:
 						_score += 70;
 						break;
 					default:
@@ -575,18 +575,19 @@ void PlayState::createGrid(Ogre::SceneNode* gridNode, Ogre::uint32 mask,
 	}
 
 	//Create vehicles
-	Vehicle* soldier1 = new Vehicle(1, 2, VehicleType::SOLDIER,
+	Vehicle* soldier1 = new Vehicle(1, 2, Vehicle::VehicleType::SOLDIER,
 		Ogre::String(gridNode->getName()).append("_soldier1"), *_sceneMgr);
-	Vehicle* soldier2 = new Vehicle(1, 2, VehicleType::SOLDIER,
+	Vehicle* soldier2 = new Vehicle(1, 2, Vehicle::VehicleType::SOLDIER,
 		Ogre::String(gridNode->getName()).append("_soldier2"), *_sceneMgr);
-	Vehicle* truck1 = new Vehicle(1, 3, VehicleType::TRUCK,
+	Vehicle* truck1 = new Vehicle(1, 3, Vehicle::VehicleType::TRUCK,
 		Ogre::String(gridNode->getName()).append("_truck1"), *_sceneMgr);
-	Vehicle* truck2 = new Vehicle(1, 3, VehicleType::TRUCK,
+	Vehicle* truck2 = new Vehicle(1, 3, Vehicle::VehicleType::TRUCK,
 		Ogre::String(gridNode->getName()).append("_truck2"), *_sceneMgr);
-	Vehicle* tank = new Vehicle(2, 2, VehicleType::TANK,
+	Vehicle* tank = new Vehicle(2, 2, Vehicle::VehicleType::TANK,
 		Ogre::String(gridNode->getName()).append("_tank"), *_sceneMgr);
-	Vehicle* missileLauncher = new Vehicle(2, 3, VehicleType::MISSILE_LAUNCHER,
+	Vehicle* missileLauncher = new Vehicle(2, 3, Vehicle::VehicleType::MISSILE_LAUNCHER,
 		Ogre::String(gridNode->getName()).append("_missile"), *_sceneMgr);
+
 	// ADD vehicles to gridNode
 	gridNode->addChild(soldier1->getNode());
 	gridNode->addChild(soldier2->getNode());

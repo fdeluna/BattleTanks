@@ -81,7 +81,7 @@ const int Vehicle::getHP()
 	return _hp;
 }
 
-VehicleType Vehicle::getType()
+Vehicle::VehicleType Vehicle::getType()
 {
 	return _type;
 }

@@ -2,11 +2,19 @@
 #define Vehicle_H
 
 #include <Ogre.h>
-#include "Enums.h"
 
 class Vehicle
 {
 public:
+
+	enum VehicleType
+	{
+		SOLDIER = 1,
+		TRUCK = 2,
+		TANK = 3,
+		MISSILE_LAUNCHER = 4
+	};
+
 	Vehicle(int heigh, int width, VehicleType type, Ogre::String name, Ogre::SceneManager &sceneMgr);
 	Vehicle();
 	~Vehicle();
@@ -29,7 +37,6 @@ public:
 	void decreaseHP();
 	void render();
 	void addGridNode(Ogre::SceneNode* gridnode);
-
 private:
 	bool _renderer = false;
 	bool dead = false;
